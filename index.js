@@ -3,7 +3,7 @@ const app = express();
 const dotenv = require("dotenv").config()
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const sqlite = require("sqlite3")
+
 
 app.use(express.json())
 
