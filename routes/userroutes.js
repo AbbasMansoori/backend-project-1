@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const users = require("../migrations/users")
+
 
 
 // testa våran routes och att få tillbaka users från usersfilen
