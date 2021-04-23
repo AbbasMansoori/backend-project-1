@@ -16,7 +16,7 @@ const users = [
 
     }
 ];
-function initSeed(db){
+function initSeed(db){ //funktion som exporteras till database.js på ett smidigt sett
 
     //db serialize funktionen för att seeda usersen ovan in i databasen
         for(let user of users){ //for loop där varje user i users läggs in i databasen
