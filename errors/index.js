@@ -1,6 +1,6 @@
 class UserError extends Error{}
 
-class invalidBody extends UserError{
+class InvalidBody extends UserError{
     constructor(fields){
         super()
         this.fields = fields
