@@ -4,3 +4,6 @@ class Error{
         this.errorCode = 400
     }
 }
+
+
+//ska exporteras

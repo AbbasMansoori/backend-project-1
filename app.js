@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 
 const userRoutes = require("./routes/users.js")
 
-app.use(express.json())
+app.use(express.json() )
 
 app.use("/", userRoutes)
 
