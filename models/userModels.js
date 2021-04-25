@@ -1,5 +1,6 @@
 const db = require("../database/connection");
-const {DataTypes} = require("sequelize");
+const { DataTypes } = require("sequelize");
+const { InvalidBody } = require("../errors");
 
 const User = db.define("user", {
   email: {
@@ -13,4 +14,16 @@ const User = db.define("user", {
   },
 });
 
-module.exports = User
+User.authenticate = async (email, password) => {
+  return new Promise((resolve, reject) => {
+    const user = User.findOne({ where: { email } });
+    resolve(user)
+    if (!user) {
+      reject (new InvalidBody());
+    }
+
+    
+  });
+};
+
+module.exports = User;
