@@ -3,6 +3,8 @@ const {BaseError} = require('sequelize')
 
 
 function errorHandler(error, req, res, next){
+    
+    
     if(error instanceof UserError){
         res.status(400).json({error: error.message})
 

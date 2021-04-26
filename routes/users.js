@@ -7,11 +7,9 @@ const userController = require("../controllers/userControllers")
 
 router.post('/login', userController.login)
 
-router.get("/me", function(req, res){
-  res.json("veeeeemeeeeduuuuuuuuuu")
-})
+router.get('/me', userController.me)
 
-
+router.patch("/me", userController.passwordReset)
 
 module.exports = router
 

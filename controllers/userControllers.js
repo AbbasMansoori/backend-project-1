@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 module.exports = {
+
+  //login endpoint logiken
   async login(req, res, next) {
     try {
       const { email, password } = req.body; //laddar/fyller req.body med parametrarna email och password som man kan skicka som en förfrågan i postman.
@@ -13,7 +15,6 @@ module.exports = {
       if (passwordmatch == true) {
         const token = jwt.sign(password, process.env.SECRET);
         res.json({ token, email });
-        
       } else {
         throw new Unauthorized();
       }
@@ -21,9 +22,41 @@ module.exports = {
       next(error);
     }
   },
+
+
+  //me endpoint logiken
+  me(req, res, next) {
+    const { email } = req.body;
+    res.json({ email });
+    
+  },
+
+  // patch/me endpoint logiken async funktion, måste ha try och catch
+  async passwordReset(req, res, next) { 
+    try{ 
+      const {email, password} = req.body // email och password som skrivs i postmans body som en request
+      if(!email || !password){
+        throw new Unauthorized();
+      }
+      const newHashedPass = bcrypt.hashSync(password); // hashar det som skrivs in i postman body
+      await User.update({password: newHashedPass}, {where: {email: email}}) // updaterar den email som finns i databasen med det nya hashet, notera att den gå in i userModules
+      console.log(password) // här är det nya passwordet bytt och vi kan logga det i terminalen
+      res.json({message: `Password is changed, check your email @ ${email}`}) // svara i body i jsonformat
+      
+    }catch(error){
+      next(error)
+    }
+    
+  }
+
+
+
   
 
 
-  
+
 };
+
+
+
 

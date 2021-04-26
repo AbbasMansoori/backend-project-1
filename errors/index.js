@@ -1,4 +1,9 @@
-class UserError extends Error{}
+class UserError extends Error{
+    constructor(message){
+        super(message)
+    }
+
+}
 
 class InvalidBody extends UserError{
     constructor(fields){
@@ -13,7 +18,7 @@ class InvalidBody extends UserError{
 
 class Unauthorized extends UserError{
     constructor(){
-        super()
+        super("Unauthorized")
         this.message = "Unauthorized"
         this.errorCode = 401
     }
