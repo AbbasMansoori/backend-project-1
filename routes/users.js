@@ -11,5 +11,7 @@ router.get('/me', userController.me)
 
 router.patch("/me", userController.passwordReset)
 
+router.get("/generate", userController.fakes)
+
 module.exports = router
 

@@ -1,56 +1,45 @@
-const User = require("../models/userModels");
-const db = require("../database/connection");
-const { DataTypes = require("sequelize") };
-const faker = require("faker");
+const db = require("../database/connection")
+const faker = require("faker")
+const {DataTypes} = require("sequelize")
+
+
 const Fuser = db.define("fuser", {
-//   De skapade uppgifterna ska innehålla namn, 
-//   adress, yrke, födelsedatum, hemort, en 
-//   personlig egenskap (såsom Cat lover eller Ballon Enthusiast), 
-//   och en bild. 
-//   För samtliga dessa kan du använda Faker för att generera.
-
-    name : {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false
     },
 
-    address : {
-        type: DataTypes.STRING,
-        allowNull: false,
-        
-
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false
     },
 
-    occupation : {
-        type: DataTypes.STRING,
-        allowNull: false,
+    occupation: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false
     },
 
-    dateOfBirth : {
-        type: DataTypes.NUMBER,
-        allowNull: false,
-    },
-
-    locale : {
-
-        type: DataTypes.STRING,
-        allowNull: false,
-
-
-    },
-
-    characterType : {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-
-    picture : {
-        type: DataTypes.STRING, //ska detta vara en länk?
-        allowNull: false,
-    }
+    picture: {
+      type: DataTypes.BLOB,
+      allowNull: false,
+      
+    }})
 
 
 
+Fuser.fakeUser = () => {
+    //vi skapar ett tomt object som vi fyller med parametrar såsom name, adress osv.
+    // i objectet fakeusers som är tomt lägger vi in keys inom hakparanteser["name"] och valuen ett fakenamn från fake.name.findname()
+    const fakeUsers = {};
+    fakeUsers["name"] = faker.name.findName()
+    fakeUsers["address"] = faker.address.streetAddress()
+    fakeUsers["occupation"] = faker.name.jobTitle()
+    fakeUsers["picture"] = faker.image.avatar()
+    return fakeUsers
+ }
 
-})
+
+module.exports = Fuser
