@@ -34,12 +34,15 @@ Fuser.fakeUser = () => {
     //vi skapar ett tomt object som vi fyller med parametrar såsom name, adress osv.
     // i objectet fakeusers som är tomt lägger vi in keys inom hakparanteser["name"] och valuen ett fakenamn från fake.name.findname()
     const fakeUsers = {};
-    fakeUsers["name"] = faker.name.findName()
-    fakeUsers["address"] = faker.address.streetAddress()
-    fakeUsers["occupation"] = faker.name.jobTitle()
-    fakeUsers["picture"] = faker.image.avatar()
+    fakeUsers.name = faker.name.findName()
+    fakeUsers.address = faker.address.streetAddress()
+    fakeUsers.uccupation = faker.name.jobTitle()
+    fakeUsers.picture = faker.image.avatar()
     return fakeUsers
  }
 
 
 module.exports = Fuser
+
+
+
