@@ -2,7 +2,7 @@ const faker = require("faker");
 
 function fakeUser() {
   const traits = [
-    "Ballon lover",
+    "Ballon Enthusiast",
     "Peoples person",
     "Go getter",
     "Wine enthusiast",
