@@ -1,48 +1,28 @@
-const db = require("../database/connection")
-const faker = require("faker")
-const {DataTypes} = require("sequelize")
+const faker = require("faker");
 
+function fakeUser() {
+  const traits = [
+    "Ballon lover",
+    "Peoples person",
+    "Go getter",
+    "Wine enthusiast",
+    "Collector of fine arts",
+    "Keeper of Towers",
+    "Ball player",
+  ];
+  const fakedate = faker.date.between("1980-01-01", "2021-01-01");
+  const fakeUsers = {};
+  fakeUsers.name = faker.name.findName();
+  fakeUsers.Birthday = `${fakedate}`.slice(0, 15);
+  // console.log(`${fakedate}`.slice(0, 18));
+  fakeUsers.address = faker.address.streetAddress();
+  fakeUsers.occupation = faker.name.jobTitle();
+  fakeUsers.country = faker.address.country();
+  fakeUsers.traits = `Is known to be a ${
+  traits[Math.floor(Math.random() * traits.length)]
+  }`;
+  fakeUsers.picture = faker.image.avatar();
+  return fakeUsers;
+}
 
-const Fuser = db.define("fuser", {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: false
-    },
-
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: false
-    },
-
-    occupation: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: false
-    },
-
-    picture: {
-      type: DataTypes.BLOB,
-      allowNull: false,
-      
-    }})
-
-
-
-Fuser.fakeUser = () => {
-    //vi skapar ett tomt object som vi fyller med parametrar såsom name, adress osv.
-    // i objectet fakeusers som är tomt lägger vi in keys inom hakparanteser["name"] och valuen ett fakenamn från fake.name.findname()
-    const fakeUsers = {};
-    fakeUsers.name = faker.name.findName()
-    fakeUsers.address = faker.address.streetAddress()
-    fakeUsers.uccupation = faker.name.jobTitle()
-    fakeUsers.picture = faker.image.avatar()
-    return fakeUsers
- }
-
-
-module.exports = Fuser
-
-
-
+module.exports = { fakeUser };
