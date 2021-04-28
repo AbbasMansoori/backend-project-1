@@ -1,8 +1,11 @@
-// const {Router} = require("express")
-// const router = new Router()
+const {Router} = require("express")
+const router = new Router()
 
-// const userController = require("../controllers/userControllers")
+const fakeController = require("../controllers/fakeControllers")
 
 
 
-// router.get('/generate', userController.fakes)
+router.get('/generate', fakeController.fakes)
+
+
+module.exports = router

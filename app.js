@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const userRoutes = require("./routes/users.js")
-// const fakeRoutes = require("./routes/fakes.js")
+const fakeRoutes = require("./routes/fakes.js")
 const errorHandler = require("./middleware/errorHandler")
 app.use(express.json() )
 
@@ -13,7 +13,7 @@ app.use(express.json() )
 
 
 app.use("/", userRoutes)
-// app.use("/", fakeRoutes)
+app.use("/", fakeRoutes)
 app.use(errorHandler)
 
 

@@ -3,7 +3,8 @@ const { InvalidBody } = require("../errors");
 const User = require("../models/userModels");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const Fuser = require("../models/fakeModels");
+
+
 
 module.exports = {
   //login endpoint logiken
@@ -30,20 +31,6 @@ module.exports = {
     res.json({ email });
   },
 
-  // fake endpoint logiken
-  async fakes(req, res, next) {
-    try {  
-                     //try skapar variablen getFakes där vi laddar in fakeUser functionen från fakemodels
-      const {authorization} = req.headers
-      console.log(authorization)
-      const token = authorization.replace("Bearer ", "") // här ersätter vi Bearer med en tom string med funktionen replace
-      jwt.verify(token, process.env.SECRET)              
-      const getFakes = Fuser.fakeUser();
-      res.json(getFakes); //response variabeln som vi skapade ovan
-    } catch (error) {
-      next(error);
-    }
-  },
 
   // patch/me endpoint i try catch block då vi tror att det kan hända ett error och vi vill fånga upp den
   async passwordReset(req, res, next) {
