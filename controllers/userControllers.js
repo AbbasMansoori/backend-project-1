@@ -4,8 +4,6 @@ const User = require("../models/userModels");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-
-
 module.exports = {
   //login endpoint logiken
   async login(req, res, next) {
@@ -30,7 +28,6 @@ module.exports = {
     const { email } = req.body;
     res.json({ email });
   },
-
 
   // patch/me endpoint i try catch block då vi tror att det kan hända ett error och vi vill fånga upp den
   async passwordReset(req, res, next) {

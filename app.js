@@ -12,8 +12,8 @@ app.use(express.json() )
 
 
 
-app.use("/", userRoutes)
-app.use("/", fakeRoutes)
+app.use(userRoutes)
+app.use(fakeRoutes)
 app.use(errorHandler)
 
 
